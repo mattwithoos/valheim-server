@@ -78,33 +78,33 @@ func (v *Valheim) Start(options StartOptions, callback func(error)) {
 		return
 	}
 	// Install env vars
-	err = os.Setenv("DOORSTOP_ENABLE", "TRUE")
-	if err != nil {
-		v.status = sStopped
-		return
-	}
-	err = os.Setenv("DOORSTOP_INVOKE_DLL_PATH", "BepInEx/core/BepInEx.Preloader.dll")
-	if err != nil {
-		v.status = sStopped
-		return
-	}
-	err = os.Setenv("DOORSTOP_CORLIB_OVERRIDE_PATH", "unstripped_corlib")
-	if err != nil {
-		v.status = sStopped
-		return
-	}
-	err = os.Setenv("LD_LIBRARY_PATH", "./doorstop_libs:$LD_LIBRARY_PATH")
-	if err != nil {
-		v.status = sStopped
-		return
-	}
-	err = os.Setenv("LD_PRELOAD", "libdoorstop_x64.so:$LD_PRELOAD")
-	if err != nil {
-		v.status = sStopped
-		return
-	}
-	err = os.Setenv("LD_LIBRARY_PATH", "./linux64:$LD_LIBRARY_PATH")
-	//err = os.Setenv("LD_LIBRARY_PATH", filepath.Join(env.ValheimPath, "linux64"))
+	// err = os.Setenv("DOORSTOP_ENABLE", "TRUE")
+	// if err != nil {
+	// 	v.status = sStopped
+	// 	return
+	// }
+	// err = os.Setenv("DOORSTOP_INVOKE_DLL_PATH", "BepInEx/core/BepInEx.Preloader.dll")
+	// if err != nil {
+	// 	v.status = sStopped
+	// 	return
+	// }
+	// err = os.Setenv("DOORSTOP_CORLIB_OVERRIDE_PATH", "unstripped_corlib")
+	// if err != nil {
+	// 	v.status = sStopped
+	// 	return
+	// }
+	// err = os.Setenv("LD_LIBRARY_PATH", "./doorstop_libs:$LD_LIBRARY_PATH")
+	// if err != nil {
+	// 	v.status = sStopped
+	// 	return
+	// }
+	// err = os.Setenv("LD_PRELOAD", "libdoorstop_x64.so:$LD_PRELOAD")
+	// if err != nil {
+	// 	v.status = sStopped
+	// 	return
+	// }
+	// err = os.Setenv("LD_LIBRARY_PATH", "./linux64:$LD_LIBRARY_PATH")
+	err = os.Setenv("LD_LIBRARY_PATH", filepath.Join(env.ValheimPath, "linux64"))
 	if err != nil {
 		v.status = sStopped
 		return
@@ -120,13 +120,14 @@ func (v *Valheim) Start(options StartOptions, callback func(error)) {
 		publicStr = "1"
 	}
 	err = v.exec(
-		filepath.Join(env.ValheimPath, "valheim_server.x86_64"),
-		"-name", v.options.Name,
-		"-world", v.options.World,
-		"-password", v.options.Password,
-		"-public", publicStr,
-		"-port", "2456",
-		"-savedir", env.ValheimSavePath)
+		filepath.Join(env.ValheimPath, "start_server_bepinex.sh"),
+		// filepath.Join(env.ValheimPath, "valheim_server.x86_64"),
+		// "-name", v.options.Name,
+		// "-world", v.options.World,
+		// "-password", v.options.Password,
+		// "-public", publicStr,
+		// "-port", "2456",
+		// "-savedir", env.ValheimSavePath)
 	if err != nil {
 		v.status = sStopped
 		return
