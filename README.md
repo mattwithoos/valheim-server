@@ -21,7 +21,7 @@ Create a file `docker-compose.yml` with the content below in some directory and 
 version: "3"
 services:
   valheim:
-    image: fakundo/valheim-server:latest
+    image: mattwithoos/valheim-server:latest
     ports:
       - 8000:8000/tcp
       - 2456:2456/udp
