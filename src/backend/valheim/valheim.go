@@ -120,7 +120,7 @@ func (v *Valheim) Start(options StartOptions, callback func(error)) {
 		publicStr = "1"
 	}
 	err = v.exec(
-		filepath.Join(env.ValheimPath, "start_server_bepinex.sh")
+		filepath.Join(env.ValheimPath, "start_server_bepinex.sh"))
 		// filepath.Join(env.ValheimPath, "valheim_server.x86_64"),
 		// "-name", v.options.Name,
 		// "-world", v.options.World,
