@@ -115,10 +115,10 @@ func (v *Valheim) Start(options StartOptions, callback func(error)) {
 		return
 	}
 	// Start game server
-	publicStr := "0"
-	if v.options.Public {
-		publicStr = "1"
-	}
+	// publicStr := "0"
+	// if v.options.Public {
+	// 	publicStr = "1"
+	// }
 	err = v.exec(
 		filepath.Join(env.ValheimPath, "start_server_bepinex.sh"))
 		// filepath.Join(env.ValheimPath, "valheim_server.x86_64"),
