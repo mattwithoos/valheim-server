@@ -1,8 +1,7 @@
 name: Release and publish to Docker
 on:
   push:
-    tags:
-      - 'v*'
+    branch: main
 jobs:
   release_and_publish:
     name: Create release and publish to Docker hub
