@@ -104,21 +104,17 @@ func (v *Valheim) Start(options StartOptions, callback func(error)) {
 	// 	return
 	// }
 	// err = os.Setenv("LD_LIBRARY_PATH", "./linux64:$LD_LIBRARY_PATH")
-	err = os.Setenv("LD_LIBRARY_PATH", filepath.Join(env.ValheimPath, "linux64"))
-	if err != nil {
-		v.status = sStopped
-		return
-	}
-	err = os.Setenv("SteamAppId", "892970")
-	if err != nil {
-		v.status = sStopped
-		return
-	}
-	err = exec.Command("/bin/sh", filepath.Join(env.ValheimPath, "set_env.sh"))
-	if err != nil {
-		v.status = sStopped
-		return
-	}
+	// --	
+	// err = os.Setenv("LD_LIBRARY_PATH", filepath.Join(env.ValheimPath, "linux64"))
+	// if err != nil {
+	// 	v.status = sStopped
+	// 	return
+	// }
+	// err = os.Setenv("SteamAppId", "892970")
+	// if err != nil {
+	// 	v.status = sStopped
+	// 	return
+	// }
 	// Start game server
 	publicStr := "0"
 	if v.options.Public {
