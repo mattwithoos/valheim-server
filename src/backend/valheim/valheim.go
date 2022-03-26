@@ -114,7 +114,7 @@ func (v *Valheim) Start(options StartOptions, callback func(error)) {
 		v.status = sStopped
 		return
 	}
-	err = v.exec.Command("/bin/sh", filepath.Join(env.ValheimPath, "set_env.sh"))
+	err = exec.Command("/bin/sh", filepath.Join(env.ValheimPath, "set_env.sh"))
 	if err != nil {
 		v.status = sStopped
 		return
