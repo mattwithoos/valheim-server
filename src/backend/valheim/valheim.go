@@ -63,8 +63,8 @@ func (v *Valheim) Start(options StartOptions, callback func(error)) {
 	err = v.exec(
 		env.SteamCmdPath,
 		"+login", "anonymous",
-		"+force_install_dir", env.ValheimPath,
-		"+app_update", "896660",
+		// "+force_install_dir", env.ValheimPath,
+		// "+app_update", "896660",
 		"+quit")
 	if err != nil {
 		return
@@ -114,7 +114,7 @@ func (v *Valheim) Start(options StartOptions, callback func(error)) {
 		v.status = sStopped
 		return
 	}
-	err = v.exec(filepath.Join(env.ValheimPath, "set_env.sh"))
+	err = v.exec.Command("/bin/sh", filepath.Join(env.ValheimPath, "set_env.sh"))
 	if err != nil {
 		v.status = sStopped
 		return
