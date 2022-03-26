@@ -16,5 +16,5 @@ EXPOSE 2458/udp
 COPY ./build ${VALHEIM_SERVER_PATH}
 COPY ./copy/.toprc ${HOME}
 
-RUN chmod +x ${VALHEIM_PATH}/set_env.sh
+#RUN chmod +x ${VALHEIM_PATH}/set_env.sh
 ENTRYPOINT ["sh", "-c", "${VALHEIM_SERVER_PATH}/valheim-server"]
