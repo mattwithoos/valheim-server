@@ -3,6 +3,7 @@ module valheim-server
 go 1.16
 
 require (
+	github.com/otiai10/copy v1.7.0
 	github.com/fakundo/go-middleware v0.0.1
 	github.com/googollee/go-socket.io v1.4.4
 	github.com/howeyc/fsnotify v0.9.0 // indirect

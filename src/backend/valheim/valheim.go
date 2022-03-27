@@ -2,6 +2,7 @@ package valheim
 
 import (
 	"bytes"
+	cp "github.com/otiai10/copy"
 	"io"
 	"os/exec"
 	"path/filepath"
@@ -64,8 +65,8 @@ func (v *Valheim) Start(options StartOptions, callback func(error)) {
 	err = v.exec(
 		env.SteamCmdPath,
 		"+login", "anonymous",
-		// "+force_install_dir", env.ValheimPath,
-		// "+app_update", "896660",
+		"+force_install_dir", filepath.Join(env.ValheimPath, "data"),
+		"+app_update", "896660",
 		"+quit")
 	if err != nil {
 		return
@@ -126,9 +127,10 @@ func (v *Valheim) Start(options StartOptions, callback func(error)) {
 		v.status = sStopped
 		return
 	}
+	err := cp.Copy(env.ValheimPath, filepath.Join(env.ValheimPath, "data"))
 	err = v.exec(
 		// filepath.Join(env.ValheimPath, "start_server_bepinex.sh"))
-		filepath.Join(env.ValheimPath, "valheim_server.x86_64"),
+		filepath.Join(env.ValheimPath, "data/valheim_server.x86_64"),
 		"-name", v.options.Name,
 		"-world", v.options.World,
 		"-password", v.options.Password,
