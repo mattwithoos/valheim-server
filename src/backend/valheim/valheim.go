@@ -159,6 +159,6 @@ func (v *Valheim) Stop(callback func(error)) {
 }
 
 // GetOutput returns output reader
-func (v *Valheim) GetOutput() *io.ReadCloser {
+func (v *Valheim) GetOutput() *io.Reader {
 	return &v.out
 }
