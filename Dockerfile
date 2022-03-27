@@ -23,7 +23,8 @@ EXPOSE 2458/udp
 RUN mkdir -p /root/.steam/sdk64
 COPY ./build ${VALHEIM_SERVER_PATH}
 COPY ./copy/.toprc ${HOME}
+COPY ./start_modded.sh ${VALHEIM_PATH}/start_modded.sh
 
-
-#RUN chmod +x ${VALHEIM_PATH}/set_env.sh
+RUN chmod +x ${VALHEIM_PATH}/start_modded.sh
+RUN chmod +x ${VALHEIM_PATH}/valheim_server.x86_64
 ENTRYPOINT ["sh", "-c", "${VALHEIM_SERVER_PATH}/valheim-server"]
