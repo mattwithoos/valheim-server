@@ -117,20 +117,24 @@ func (v *Valheim) Start(options StartOptions, callback func(error)) {
 	// 	return
 	// }
 	// Start game server
-	// publicStr := "0"
-	// if v.options.Public {
-	// 	publicStr = "1"
-	// }
-	err = v.exec("/bin/sh", filepath.Join(env.ValheimPath, "start_server_bepinex.sh"))
-	// err = v.exec(
-	// 	// filepath.Join(env.ValheimPath, "start_server_bepinex.sh"))
-	// 	filepath.Join(env.ValheimPath, "valheim_server.x86_64"),
-	// 	"-name", v.options.Name,
-	// 	"-world", v.options.World,
-	// 	"-password", v.options.Password,
-	// 	"-public", publicStr,
-	// 	"-port", "2456",
-	// 	"-savedir", env.ValheimSavePath)
+	publicStr := "0"
+	if v.options.Public {
+		publicStr = "1"
+	}
+	err = v.exec("/bin/sh", filepath.Join(env.ValheimPath, "set_env.sh"))
+	if err != nil {
+		v.status = sStopped
+		return
+	}
+	err = v.exec(
+		// filepath.Join(env.ValheimPath, "start_server_bepinex.sh"))
+		filepath.Join(env.ValheimPath, "valheim_server.x86_64"),
+		"-name", v.options.Name,
+		"-world", v.options.World,
+		"-password", v.options.Password,
+		"-public", publicStr,
+		"-port", "2456",
+		"-savedir", env.ValheimSavePath)
 	if err != nil {
 		v.status = sStopped
 		return
