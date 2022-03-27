@@ -26,5 +26,4 @@ COPY ./copy/.toprc ${HOME}
 COPY ./start_modded.sh ${VALHEIM_PATH}/start_modded.sh
 
 RUN chmod +x ${VALHEIM_PATH}/start_modded.sh
-RUN chmod +x ${VALHEIM_PATH}/valheim_server.x86_64
 ENTRYPOINT ["sh", "-c", "${VALHEIM_SERVER_PATH}/valheim-server"]
