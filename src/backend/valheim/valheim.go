@@ -126,8 +126,7 @@ func (v *Valheim) Start(options StartOptions, callback func(error)) {
 		v.options.Name,
 		v.options.World,
 		v.options.Password,
-		publicStr
-	)
+		publicStr)
 	if err != nil {
 		v.status = sStopped
 		return
