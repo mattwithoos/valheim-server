@@ -1,6 +1,7 @@
 package valheim
 
 import (
+	"bytes"
 	"io"
 	"os/exec"
 	"path/filepath"
@@ -25,17 +26,18 @@ var (
 type Valheim struct {
 	status  int
 	proc    *exec.Cmd
-	out     io.ReadCloser
+	out     io.Reader
 	options StartOptions
 }
 
 // Exec process and stores information in Valheim struct
 func (v *Valheim) exec(name string, arg ...string) (err error) {
+	var buf bytes.Buffer
 	v.proc = exec.Command(name, arg...)
-	v.out, err = v.proc.StdoutPipe()
-	if err != nil {
-		return err
-	}
+	v.proc.Stderr = &buf
+	v.proc.Stdout = &buf
+	v.out = &buf
+
 	return v.proc.Start()
 }
 
@@ -119,15 +121,16 @@ func (v *Valheim) Start(options StartOptions, callback func(error)) {
 	if v.options.Public {
 		publicStr = "1"
 	}
-	err = v.exec(
-		// filepath.Join(env.ValheimPath, "start_server_bepinex.sh"))
-		filepath.Join(env.ValheimPath, "valheim_server.x86_64"),
-		"-name", v.options.Name,
-		"-world", v.options.World,
-		"-password", v.options.Password,
-		"-public", publicStr,
-		"-port", "2456",
-		"-savedir", env.ValheimSavePath)
+	err = v.exec("/bin/sh", filepath.Join(env.ValheimPath, "start_server_bepinex.sh"))
+	// err = v.exec(
+	// 	// filepath.Join(env.ValheimPath, "start_server_bepinex.sh"))
+	// 	filepath.Join(env.ValheimPath, "valheim_server.x86_64"),
+	// 	"-name", v.options.Name,
+	// 	"-world", v.options.World,
+	// 	"-password", v.options.Password,
+	// 	"-public", publicStr,
+	// 	"-port", "2456",
+	// 	"-savedir", env.ValheimSavePath)
 	if err != nil {
 		v.status = sStopped
 		return
