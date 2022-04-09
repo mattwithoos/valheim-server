@@ -3,6 +3,7 @@ package valheim
 import (
 	"bytes"
 	// cp "github.com/otiai10/copy"
+  "os"
 	"io"
 	"os/exec"
 	"path/filepath"
