@@ -6,7 +6,7 @@ import (
   	"os"
 	"io"
 	"os/exec"
-	"path/filepath"
+	//"path/filepath"
 	"sync"
 	"syscall"
 	"valheim-server/env"
