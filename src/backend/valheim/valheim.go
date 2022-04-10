@@ -145,7 +145,7 @@ func (v *Valheim) Start(options StartOptions, callback func(error)) {
 	// }
 	err = v.exec(
 		// filepath.Join(env.ValheimPath, "start_server_bepinex.sh"))
-		filepath.Join("./valheim_server.x86_64"),
+		"./valheim_server.x86_64",
 		"-name", v.options.Name,
 		"-world", v.options.World,
 		"-password", v.options.Password,
