@@ -26,6 +26,7 @@ RUN mkdir -p /root/.steam/sdk64
 COPY ./build ${VALHEIM_SERVER_PATH}
 COPY ./copy/.toprc ${HOME}
 COPY ./start_modded.sh ${VALHEIM_PATH}/start_modded.sh
+COPY ./steamcmd.sh ${STEAMCMD_PATH}
 
 RUN chmod +x ${VALHEIM_PATH}/start_modded.sh
 ENTRYPOINT ["sh", "-c", "${VALHEIM_SERVER_PATH}/valheim-server"]
