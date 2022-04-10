@@ -23,12 +23,11 @@ COPY ./copy/.toprc ${HOME}
 COPY ./start_modded.sh ${VALHEIM_PATH}/start_modded.sh
 COPY ./steamcmd.sh ${STEAMCMD_PATH}
 
-ENV DOORSTOP_ENABLE=TRUE
-ENV DOORSTOP_INVOKE_DLL_PATH=./BepInEx/core/BepInEx.Preloader.dll
-ENV DOORSTOP_CORLIB_OVERRIDE_PATH=./unstripped_corlib
-ENV LD_LIBRARY_PATH="./doorstop_libs:$LD_LIBRARY_PATH"
-ENV LD_PRELOAD="libdoorstop_x64.so:$LD_PRELOAD"
-ENV LD_LIBRARY_PATH="./linux64:$LD_LIBRARY_PATH"
-ENV SteamAppId=892970
+# ENV DOORSTOP_ENABLE=TRUE
+# ENV DOORSTOP_INVOKE_DLL_PATH=./BepInEx/core/BepInEx.Preloader.dll
+# ENV DOORSTOP_CORLIB_OVERRIDE_PATH=./unstripped_corlib
+# ENV LD_LIBRARY_PATH="./doorstop_libs:$LD_LIBRARY_PATH"
+# ENV LD_PRELOAD="libdoorstop_x64.so:$LD_PRELOAD"
+# ENV SteamAppId=892970
 
 ENTRYPOINT ["sh", "-c", "${VALHEIM_SERVER_PATH}/valheim-server"]
