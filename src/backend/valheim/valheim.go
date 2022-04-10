@@ -3,7 +3,7 @@ package valheim
 import (
 	"bytes"
 	// cp "github.com/otiai10/copy"
-  "os"
+  	"os"
 	"io"
 	"os/exec"
 	"path/filepath"
@@ -62,6 +62,12 @@ func (v *Valheim) Start(options StartOptions, callback func(error)) {
 		return
 	}
 	v.options = options
+
+	err = os.Chdir(env.ValheimPath)
+	if err != nil {
+	    return
+	}
+
 	// Start install/update
 	err = v.exec(
 		env.SteamCmdPath,
@@ -86,17 +92,17 @@ func (v *Valheim) Start(options StartOptions, callback func(error)) {
 		v.status = sStopped
 		return
 	}
-	err = os.Setenv("DOORSTOP_INVOKE_DLL_PATH", filepath.Join(env.ValheimPath, "BepInEx/core/BepInEx.Preloader.dll"))
+	err = os.Setenv("DOORSTOP_INVOKE_DLL_PATH", "./BepInEx/core/BepInEx.Preloader.dll")
 	if err != nil {
 		v.status = sStopped
 		return
 	}
-	err = os.Setenv("DOORSTOP_CORLIB_OVERRIDE_PATH", filepath.Join(env.ValheimPath, "unstripped_corlib"))
+	err = os.Setenv("DOORSTOP_CORLIB_OVERRIDE_PATH", "./unstripped_corlib")
 	if err != nil {
 		v.status = sStopped
 		return
 	}
-	err = os.Setenv("LD_LIBRARY_PATH", filepath.Join(env.ValheimPath, "doorstop_libs:$LD_LIBRARY_PATH"))
+	err = os.Setenv("LD_LIBRARY_PATH", "./doorstop_libs:$LD_LIBRARY_PATH")
 	if err != nil {
 		v.status = sStopped
 		return
@@ -106,7 +112,7 @@ func (v *Valheim) Start(options StartOptions, callback func(error)) {
 		v.status = sStopped
 		return
 	}
-  err = os.Setenv("LD_LIBRARY_PATH", filepath.Join(env.ValheimPath, "./linux64:$LD_LIBRARY_PATH"))
+  	err = os.Setenv("LD_LIBRARY_PATH", "./linux64:$LD_LIBRARY_PATH")
 	if err != nil {
 		v.status = sStopped
 		return
@@ -139,7 +145,7 @@ func (v *Valheim) Start(options StartOptions, callback func(error)) {
 	// }
 	err = v.exec(
 		// filepath.Join(env.ValheimPath, "start_server_bepinex.sh"))
-		filepath.Join(env.ValheimPath, "valheim_server.x86_64"),
+		filepath.Join("./valheim_server.x86_64"),
 		"-name", v.options.Name,
 		"-world", v.options.World,
 		"-password", v.options.Password,
