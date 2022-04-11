@@ -151,7 +151,7 @@ func (v *Valheim) Start(options StartOptions, callback func(error)) {
 		"-password", v.options.Password,
 		"-public", publicStr,
 		"-port", "2456",
-		"-savedir", env.ValheimSavePath)
+		"-savedir", "save")
 	if err != nil {
 		v.status = sStopped
 		return
