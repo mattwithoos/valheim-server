@@ -107,12 +107,12 @@ func (v *Valheim) Start(options StartOptions, callback func(error)) {
 		v.status = sStopped
 		return
 	}
-	err = os.Setenv("LD_PRELOAD", "libdoorstop_x64.so:$LD_PRELOAD")
+	err = os.Setenv("LD_PRELOAD", "./doorstop_libs/libdoorstop_x64.so:$LD_PRELOAD")
 	if err != nil {
 		v.status = sStopped
 		return
 	}
-  	err = os.Setenv("LD_LIBRARY_PATH", "./linux64:$LD_LIBRARY_PATH")
+  err = os.Setenv("LD_LIBRARY_PATH", "./linux64:$LD_LIBRARY_PATH")
 	if err != nil {
 		v.status = sStopped
 		return
