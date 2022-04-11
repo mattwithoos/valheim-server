@@ -21,7 +21,7 @@ RUN mkdir -p /root/.steam/sdk64
 COPY ./build ${VALHEIM_SERVER_PATH}
 COPY ./copy/.toprc ${HOME}
 COPY ./start_modded.sh ${VALHEIM_PATH}/start_modded.sh
-COPY ./steamcmd.sh ${STEAMCMD_PATH}
+#COPY ./steamcmd.sh ${STEAMCMD_PATH}
 
 # ENV DOORSTOP_ENABLE=TRUE
 # ENV DOORSTOP_INVOKE_DLL_PATH=./BepInEx/core/BepInEx.Preloader.dll
