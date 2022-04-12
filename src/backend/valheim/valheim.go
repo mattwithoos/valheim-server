@@ -98,17 +98,17 @@ func (v *Valheim) Start(options StartOptions, callback func(error)) {
 		v.status = sStopped
 		return
 	}
-	err = os.Setenv("DOORSTOP_INVOKE_DLL_PATH", "${BASE_DIR}/BepInEx/core/BepInEx.Preloader.dll")
+	err = os.Setenv("DOORSTOP_INVOKE_DLL_PATH", "/root/valheim/BepInEx/core/BepInEx.Preloader.dll")
 	if err != nil {
 		v.status = sStopped
 		return
 	}
-	err = os.Setenv("DOORSTOP_CORLIB_OVERRIDE_PATH", "${BASE_DIR}/unstripped_corlib")
+	err = os.Setenv("DOORSTOP_CORLIB_OVERRIDE_PATH", "/root/valheim/unstripped_corlib")
 	if err != nil {
 		v.status = sStopped
 		return
 	}
-	err = os.Setenv("LD_LIBRARY_PATH", "${BASE_DIR}/doorstop_libs:$LD_LIBRARY_PATH")
+	err = os.Setenv("LD_LIBRARY_PATH", "/root/valheim/doorstop_libs:$LD_LIBRARY_PATH")
 	if err != nil {
 		v.status = sStopped
 		return
@@ -118,7 +118,7 @@ func (v *Valheim) Start(options StartOptions, callback func(error)) {
 		v.status = sStopped
 		return
 	}
-  	err = os.Setenv("LD_LIBRARY_PATH", "${BASE_DIR}/linux64:$LD_LIBRARY_PATH")
+  	err = os.Setenv("LD_LIBRARY_PATH", "/root/valheim/linux64:$LD_LIBRARY_PATH")
 	if err != nil {
 		v.status = sStopped
 		return
