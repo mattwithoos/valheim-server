@@ -1,7 +1,7 @@
 import React, { useCallback, useState, useRef } from 'react'
 import { useConnectionEvent, useConnection } from 'hooks'
 import { STATE_EVENT, WORLDS_EVENT, SERVER_STOP_EVENT } from 'constants/events'
-import { STOPPED_STATUS, RUNNING_STATUS } from 'constants/serverStatuses'
+import { STOPPED_STATUS, KILLING_STATUS, RUNNING_STATUS } from 'constants/serverStatuses'
 import Button from '@material-ui/core/Button'
 import Card from '@material-ui/core/Card'
 import Divider from '@material-ui/core/Divider'
