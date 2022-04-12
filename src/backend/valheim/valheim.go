@@ -179,6 +179,26 @@ func (v *Valheim) Stop(callback func(error)) {
 	return
 }
 
+// Force kill game server
+func (v *Valheim) Kill(callback func(error)) {
+	serverMtx.Lock()
+	defer serverMtx.Unlock()
+	var err error
+	defer func() {
+		callback(err)
+	}()
+	if v.status != sRunning {
+		err = util.AlreadyStoppedError
+		return
+	}
+	v.status = sKilling
+	callback(nil)
+	_ = v.proc.Process.Signal(syscall.SIGKILL)
+	_ = v.proc.Wait()
+	v.status = sStopped
+	return
+}
+
 // GetOutput returns output reader
 func (v *Valheim) GetOutput() *io.Reader {
 	return &v.out
