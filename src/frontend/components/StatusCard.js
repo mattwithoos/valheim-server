@@ -33,6 +33,10 @@ export default () => {
     conn.emit(SERVER_STOP_EVENT)
   }, [conn])
 
+  const handleKillClick = useCallback(() => {
+    conn.emit(SERVER_KILL_EVENT)
+  }, [conn])
+
   const handleStateEvent = useCallback((statusState) => {
     setServerState(statusState)
   }, [])
@@ -89,6 +93,15 @@ export default () => {
                   <StopIcon />
                   &nbsp;
                   Stop
+                </Button>
+                <Button
+                  color="primary"
+                  onClick={handleKillClick}
+                  disabled={!!serverState && serverState.Status !== RUNNING_STATUS}
+                >
+                  <KillIcon />
+                  &nbsp;
+                  Kill
                 </Button>
               </>
             )

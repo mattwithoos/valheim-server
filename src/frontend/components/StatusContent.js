@@ -14,6 +14,7 @@ export default ({ serverState }) => {
   const statusText = {
     [STOPPED_STATUS]: 'Stopped',
     [STOPPING_STATUS]: 'Stopping',
+    [KILLING_STATUS]: 'Killing',
     [INSTALLING_STATUS]: 'Installing / updating',
     [RUNNING_STATUS]: 'Running',
   }[serverState.Status]
@@ -28,6 +29,7 @@ export default ({ serverState }) => {
   const icon = {
     [STOPPED_STATUS]: ErrorIcon,
     [STOPPING_STATUS]: InfoIcon,
+    [KILLING_STATUS]: InfoIcon,
     [INSTALLING_STATUS]: InfoIcon,
     [RUNNING_STATUS]: CheckCircleIcon,
   }[serverState.Status]
