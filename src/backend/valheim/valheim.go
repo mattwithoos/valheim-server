@@ -16,6 +16,7 @@ import (
 const (
 	sStopped = iota
 	sStopping
+	sKilling
 	sInstalling
 	sRunning
 )
