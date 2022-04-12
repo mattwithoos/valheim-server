@@ -113,7 +113,7 @@ func (v *Valheim) Start(options StartOptions, callback func(error)) {
 		v.status = sStopped
 		return
 	}
-	err = os.Setenv("LD_PRELOAD", "libdoorstop_x64.so:$LD_PRELOAD")
+	err = os.Setenv("LD_PRELOAD", "./doorstop_libs/libdoorstop_x64.so:$LD_PRELOAD")
 	if err != nil {
 		v.status = sStopped
 		return
@@ -201,6 +201,11 @@ func (v *Valheim) Kill(callback func(error)) {
 	}()
 	if v.status != sRunning {
 		err = util.AlreadyStoppedError
+		return
+	}
+	err = os.Setenv("LD_PRELOAD", "")
+	if err != nil {
+		v.status = sStopped
 		return
 	}
 	v.status = sKilling
