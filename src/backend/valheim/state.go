@@ -13,6 +13,8 @@ func (v *Valheim) GetStatusString() string {
 		return "stopped"
 	case sStopping:
 		return "stopping"
+	case sKilling:
+		return "killing"
 	case sInstalling:
 		return "installing"
 	case sRunning:

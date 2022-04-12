@@ -4,7 +4,7 @@ import "valheim-server/util"
 
 // UpdatePerfData updates performance information of the running game process
 func (v *Valheim) UpdatePerfData(p *util.PerfData) {
-	if v.status == sRunning || v.status == sStopping {
+	if v.status == sRunning || v.status == sStopping || v.status == sKilling {
 		p.Update(v.proc.Process.Pid)
 	} else {
 		p.Reset()
