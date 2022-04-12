@@ -14,9 +14,9 @@ export default ({ serverState }) => {
   const statusText = {
     [STOPPED_STATUS]: 'Stopped',
     [STOPPING_STATUS]: 'Stopping',
-    [KILLING_STATUS]: 'Killing',
     [INSTALLING_STATUS]: 'Installing / updating',
     [RUNNING_STATUS]: 'Running',
+    [KILLING_STATUS]: 'Killing',
   }[serverState.Status]
 
   const color = {
@@ -24,14 +24,15 @@ export default ({ serverState }) => {
     [STOPPING_STATUS]: 'warning.main',
     [INSTALLING_STATUS]: 'warning.main',
     [RUNNING_STATUS]: 'success.main',
+    [KILLING_STATUS]: 'warning.main',
   }[serverState.Status]
 
   const icon = {
     [STOPPED_STATUS]: ErrorIcon,
     [STOPPING_STATUS]: InfoIcon,
-    [KILLING_STATUS]: InfoIcon,
     [INSTALLING_STATUS]: InfoIcon,
     [RUNNING_STATUS]: CheckCircleIcon,
+    [KILLING_STATUS]: InfoIcon,
   }[serverState.Status]
 
   return (

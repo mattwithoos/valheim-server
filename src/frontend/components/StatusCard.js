@@ -1,6 +1,6 @@
 import React, { useCallback, useState, useRef } from 'react'
 import { useConnectionEvent, useConnection } from 'hooks'
-import { STATE_EVENT, WORLDS_EVENT, SERVER_STOP_EVENT } from 'constants/events'
+import { STATE_EVENT, WORLDS_EVENT, SERVER_STOP_EVENT, SERVER_KILL_EVENT } from 'constants/events'
 import { STOPPED_STATUS, KILLING_STATUS, RUNNING_STATUS } from 'constants/serverStatuses'
 import Button from '@material-ui/core/Button'
 import Card from '@material-ui/core/Card'
@@ -99,7 +99,7 @@ export default () => {
                   onClick={handleKillClick}
                   disabled={!!serverState && serverState.Status !== RUNNING_STATUS}
                 >
-                  <KillIcon />
+                  <StopIcon />
                   &nbsp;
                   Kill
                 </Button>
