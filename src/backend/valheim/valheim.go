@@ -167,11 +167,7 @@ func (v *Valheim) Start(options StartOptions, callback func(error)) {
 
 // Stop game server
 func (v *Valheim) Stop(callback func(error)) {
-	err = os.Setenv("LD_PRELOAD", "")
-	if err != nil {
-		v.status = sStopped
-		return
-	}
+
 	serverMtx.Lock()
 	defer serverMtx.Unlock()
 	var err error
@@ -180,6 +176,11 @@ func (v *Valheim) Stop(callback func(error)) {
 	}()
 	if v.status != sRunning {
 		err = util.AlreadyStoppedError
+		return
+	}
+	err = os.Setenv("LD_PRELOAD", "")
+	if err != nil {
+		v.status = sStopped
 		return
 	}
 	v.status = sStopping
