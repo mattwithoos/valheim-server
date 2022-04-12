@@ -1,5 +1,5 @@
 import React, { createElement } from 'react'
-import { STOPPED_STATUS, STOPPING_STATUS, INSTALLING_STATUS, RUNNING_STATUS } from 'constants/serverStatuses'
+import { STOPPED_STATUS, STOPPING_STATUS, INSTALLING_STATUS, RUNNING_STATUS, KILLING_STATUS } from 'constants/serverStatuses'
 import Box from '@material-ui/core/Box'
 import StatusOption from 'components/StatusOption'
 import List from '@material-ui/core/List'
